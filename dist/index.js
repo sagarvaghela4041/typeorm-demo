@@ -22,8 +22,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var dotenv = __importStar(require("dotenv"));
+require("reflect-metadata");
+const express_1 = __importDefault(require("express"));
+const dotenv = __importStar(require("dotenv"));
+const typeorm_1 = require("typeorm");
+const User_1 = require("./entity/User");
 dotenv.config();
-var app = express_1.default();
-app.listen("" + process.env.PORT, function () { return console.log("Server started on port: " + process.env.PORT); });
+const app = express_1.default();
+try {
+    typeorm_1.createConnection().then(connection => {
+        const userRepository = connection.getRepository(User_1.User);
+        const user = new User_1.User();
+        user.name = 'sagar';
+        user.active = true;
+        userRepository.save(user);
+    });
+}
+catch (err) {
+    console.log("here");
+    console.log(err);
+}
+app.listen(`${process.env.PORT}`, () => console.log(`Server started on port: ${process.env.PORT}`));

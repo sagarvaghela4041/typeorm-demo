@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2017",
     "module": "commonjs",
     "strict": true,
     "strictPropertyInitialization": false,
