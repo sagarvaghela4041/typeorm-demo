@@ -25,21 +25,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
-const typeorm_1 = require("typeorm");
-const User_1 = require("./entity/User");
+const user_service_1 = require("./services/user-service");
 dotenv.config();
 const app = express_1.default();
-try {
-    typeorm_1.createConnection().then(connection => {
-        const userRepository = connection.getRepository(User_1.User);
-        const user = new User_1.User();
-        user.name = 'sagar';
-        user.active = true;
-        userRepository.save(user);
-    });
-}
-catch (err) {
-    console.log("here");
-    console.log(err);
-}
+user_service_1.test();
 app.listen(`${process.env.PORT}`, () => console.log(`Server started on port: ${process.env.PORT}`));
