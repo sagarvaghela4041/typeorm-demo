@@ -24,7 +24,7 @@ __decorate([
 ], Result.prototype, "marks", void 0);
 __decorate([
     typeorm_1.OneToOne(() => Student_1.Student),
-    typeorm_1.JoinColumn([{ name: "student_id" }]),
+    typeorm_1.JoinColumn([{ name: "student" }]),
     __metadata("design:type", Student_1.Student)
 ], Result.prototype, "student", void 0);
 Result = __decorate([

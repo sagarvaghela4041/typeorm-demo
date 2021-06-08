@@ -18,7 +18,7 @@ async function result() {
     // result.student = student;
     const resultRepository = connection.getRepository(Result_1.Result);
     // resultRepository.save(result);
-    const user = userRepository.createQueryBuilder().where('id = :id', { id: 1 }).getOne();
+    const user = await resultRepository.createQueryBuilder('result').innerJoin('result.student', 'student').getMany();
     console.log(user);
 }
 exports.result = result;

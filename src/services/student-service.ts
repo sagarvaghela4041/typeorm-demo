@@ -17,7 +17,7 @@ export async function result(): Promise<void> {
     // result.student = student;
     const resultRepository = connection.getRepository(Result);
     // resultRepository.save(result);
-    const user = await resultRepository.createQueryBuilder('result').innerJoin('result.student', '').getMany();
+    const user = await resultRepository.createQueryBuilder('result').innerJoinAndSelect('result.student', 'student').getMany();
     console.log(user);
 
 }
